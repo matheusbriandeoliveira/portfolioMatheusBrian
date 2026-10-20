@@ -554,6 +554,28 @@
   gap: clamp(24px, 3vw, 44px);
 }
 
+.hero__logo {
+  position: absolute;
+  z-index: 2;
+  top: clamp(16px, 3vh, 32px);
+  left: clamp(24px, 5.5vw, 84px);
+  color: #fff;
+  font-family: 'Drinks Fruit', 'Bodoni MT', Georgia, serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.hero__logo span {
+  color: #EC368D;
+}
+
+.hero__logo:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 6px;
+}
+
 .hero__navigation a {
   color: #fff;
   font-family: 'DM Sans', sans-serif;
@@ -729,6 +751,7 @@
     top: auto;
     transform: none;
     width: 100%;
+    text-align: center;
   }
 
   .hero__greeting {
@@ -738,7 +761,7 @@
   }
 
   .hero__name {
-    font-size: clamp(64px, 21vw, 152px);
+    font-size: clamp(60px, 19vw, 140px);
     line-height: 0.9;
     white-space: normal;
   }
@@ -748,7 +771,9 @@
   }
 
   .hero__tagline {
-    margin-right: auto;
+    margin-left: auto;
+    margin-right: 2%;
+    text-align: left;
   }
 
   .hero__tagline {
@@ -761,7 +786,15 @@
   }
 
   .about__title {
-    font-size: clamp(48px, 10vw, 72px);
+    font-size: clamp(28px, 6.4vw, 48px);
+    text-align: center;
+  }
+
+  .about__title .about__title-intro {
+    display: inline;
+    margin-bottom: 0;
+    margin-right: 0.2em;
+    font-size: 0.65em;
   }
 
   .creative-tools__popover {

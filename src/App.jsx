@@ -126,6 +126,7 @@ function App() {
         </div>
       )}
       <section className="hero" ref={heroRef} id="inicio" aria-label="Início">
+      <a className="hero__logo" href="#inicio" aria-label="Matheus Brian — início">MB<span>.</span></a>
       <nav className="hero__navigation" aria-label="Navegação principal">
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
