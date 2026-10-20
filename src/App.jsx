@@ -133,7 +133,7 @@ function App() {
 
       <section className="hero__intro" aria-label="Apresentação" data-scroll-fade>
         <p className="hero__greeting">Olá, eu sou</p>
-        <h1 className="hero__name">Matheus Brian<span>.</span></h1>
+        <h1 className="hero__name">Matheus <br className="hero__name-break" />Brian<span>.</span></h1>
         <p className="hero__tagline">
           Ideias que conectam design
           <br />
