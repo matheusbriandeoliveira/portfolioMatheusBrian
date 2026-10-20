@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import PerspectiveTunnelHero from './components/ui/perspective-tunnel-hero'
+import PortfolioFooter from './components/ui/PortfolioFooter'
 
 function App() {
   const heroRef = useRef(null)
+  const portfolioRef = useRef(null)
   const [preloader, setPreloader] = useState('loading')
 
   useEffect(() => {
@@ -53,7 +55,6 @@ function App() {
 
   useEffect(() => {
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const texts = heroRef.current.querySelectorAll('[data-scroll-fade]')
     let frameId = null
 
     const updateParallax = () => {
@@ -67,21 +68,32 @@ function App() {
       hero.style.setProperty('--parallax-offset', `${offset}px`)
 
       const viewportHeight = window.innerHeight
-      const fadeDistance = Math.min(viewportHeight * 0.22, 160)
-      const edgeInset = viewportHeight * 0.12
+      const fadeDistance = Math.min(viewportHeight * 0.2, 140)
+      const edgeInset = viewportHeight * 0.025
+      const texts = portfolioRef.current.querySelectorAll('[data-scroll-fade], h2, h3, h4, p')
 
       texts.forEach((text) => {
+        if (text.closest('.preloader, [popover]')) return
+        if (!text.hasAttribute('data-scroll-fade') && text.closest('[data-scroll-fade]')) return
         const bounds = text.getBoundingClientRect()
-        const center = bounds.top + bounds.height / 2
         const visibility = Math.max(0, Math.min(
           1,
-          (center - edgeInset) / fadeDistance,
-          (viewportHeight - edgeInset - center) / fadeDistance,
+          (bounds.bottom - edgeInset) / fadeDistance,
+          (viewportHeight - edgeInset - bounds.top) / fadeDistance,
         ))
         const opacity = motionPreference.matches
           ? 1
           : visibility * visibility * (3 - 2 * visibility)
         text.style.setProperty('--scroll-opacity', String(opacity))
+        text.style.setProperty('--scroll-blur', `${(1 - opacity) * 5}px`)
+        text.setAttribute('data-scroll-text', '')
+      })
+
+      portfolioRef.current.querySelectorAll('.about__portraits, .creative-tools__list, .project-feature__image, .projects-gallery > .chroma-grid').forEach((section) => {
+        const bounds = section.getBoundingClientRect()
+        const entry = Math.max(0, Math.min(1, (viewportHeight - bounds.top) / (viewportHeight * 0.25)))
+        section.setAttribute('data-scroll-section', '')
+        section.style.setProperty('--section-offset', motionPreference.matches ? '0px' : `${(1 - entry) * 28}px`)
       })
     }
 
@@ -93,24 +105,27 @@ function App() {
     window.addEventListener('scroll', scheduleUpdate, { passive: true })
     window.addEventListener('resize', scheduleUpdate)
     motionPreference.addEventListener('change', scheduleUpdate)
+    const observer = new MutationObserver(scheduleUpdate)
+    observer.observe(portfolioRef.current, { childList: true, subtree: true })
     document.fonts.ready.then(scheduleUpdate)
 
     return () => {
       window.removeEventListener('scroll', scheduleUpdate)
       window.removeEventListener('resize', scheduleUpdate)
       motionPreference.removeEventListener('change', scheduleUpdate)
+      observer.disconnect()
       if (frameId !== null) window.cancelAnimationFrame(frameId)
     }
   }, [])
 
   return (
-    <main className="portfolio">
+    <main className="portfolio" ref={portfolioRef}>
       {preloader !== 'hidden' && (
         <div className={`preloader preloader--${preloader}`} role="status" aria-label="Carregando portfólio">
           <p className="preloader__name">Matheus Brian<span>.</span></p>
         </div>
       )}
-      <section className="hero" ref={heroRef} aria-label="Início">
+      <section className="hero" ref={heroRef} id="inicio" aria-label="Início">
       <nav className="hero__navigation" aria-label="Navegação principal">
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
@@ -169,7 +184,52 @@ function App() {
           </div>
         </div>
       </section>
+      <section className="creative-tools" aria-labelledby="creative-tools-title">
+        <div className="creative-tools__inner">
+          <h2 id="creative-tools-title">Minhas ferramentas <span>criativas.</span></h2>
+          <p>As tecnologias e ferramentas que utilizo para transformar ideias em projetos reais.</p>
+          <ul className="creative-tools__list">
+            {[
+              { name: 'React', icon: '/reactLogo.svg', description: 'Utilizo o React para desenvolver websites e interfaces interativas, criando componentes reutilizáveis e experiências responsivas.' },
+              { name: 'Figma', icon: '/figmaLogo.svg', description: 'Utilizo o Figma para planejar interfaces, criar layouts e protótipos e explorar a experiência de navegação antes do desenvolvimento.' },
+              { name: 'Photoshop', icon: '/psLogo.svg', description: 'Utilizo o Photoshop para editar e tratar imagens, criar composições visuais e preparar artes para projetos digitais.' },
+              { name: 'Illustrator', icon: '/illustratorLogo.svg', description: 'Utilizo o Illustrator para criar ilustrações vetoriais, elementos gráficos e peças de identidade visual que mantêm a qualidade em diferentes tamanhos.' },
+              { name: 'After Effects', icon: '/afterLogo.svg', description: 'Utilizo o After Effects para dar movimento às ideias, criando animações, efeitos visuais e composições para vídeos.' },
+              { name: 'CorelDRAW', icon: '/corelLogo.svg', description: 'Utilizo o CorelDRAW para desenvolver artes vetoriais, diagramar peças gráficas e preparar arquivos para impressão.' },
+            ].map((tool, index) => (
+              <li key={tool.name}>
+                <button type="button" className="creative-tools__item" popoverTarget={`tool-${index}`} aria-label={`Como utilizo ${tool.name}`}>
+                  <img src={tool.icon} alt="" width="64" height="64" loading="lazy" />
+                  <span>{tool.name}</span>
+                </button>
+                <div className="creative-tools__popover" id={`tool-${index}`} popover="auto" role="dialog" aria-labelledby={`tool-title-${index}`}>
+                  <button type="button" className="creative-tools__close" popoverTarget={`tool-${index}`} popoverTargetAction="hide" aria-label="Fechar">×</button>
+                  <img src={tool.icon} alt="" width="64" height="64" />
+                  <h3 id={`tool-title-${index}`}>{tool.name}</h3>
+                  <p>{tool.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
       <PerspectiveTunnelHero />
+      <section className="contact" id="contato" aria-labelledby="contact-title">
+        <div className="contact__sky" aria-hidden="true">
+          <span className="contact__cloud contact__cloud--one" />
+          <span className="contact__cloud contact__cloud--two" />
+          <span className="contact__cloud contact__cloud--three" />
+          <span className="contact__cloud contact__cloud--four" />
+        </div>
+        <div className="contact__content">
+          <h2 id="contact-title">Vamos criar algo <span>incrível juntos?</span></h2>
+          <p>Boas ideias começam com uma conversa.</p>
+          <a className="contact__whatsapp" href="https://wa.me/5514991752130" target="_blank" rel="noopener noreferrer">
+            Vamos conversar no WhatsApp <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+      <PortfolioFooter />
     </main>
   )
 }

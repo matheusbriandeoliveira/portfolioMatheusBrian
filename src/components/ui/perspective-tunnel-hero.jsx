@@ -3,6 +3,7 @@ import {
   motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform,
 } from 'framer-motion'
 import './perspective-tunnel-hero.css'
+import ChromaGrid from './ChromaGrid'
 
 const PROJECTS = [
   { id: 'projeto-01', title: 'Projeto 01', src: '/imgProjetos/imgProjeto01.jpg' },
@@ -11,6 +12,13 @@ const PROJECTS = [
   { id: 'projeto-04', title: 'Projeto 04', src: '/imgProjetos/imgProjetos04.jpg' },
   { id: 'projeto-05', title: 'Projeto 05', src: '/imgProjetos/imgProjetos05.jpg' },
 ]
+
+const EXTRA_ARTWORKS = ['jpg', 'png'].flatMap((extension) =>
+  [1, 2, 3].map((number) => ({
+    image: `/img/criativosExtras (${number}).${extension}`,
+    title: `Arte ${number} (${extension})`,
+    accent: '#EC368D',
+  })))
 
 function TunnelCard({ project, index, total, progress, pointer, stage, reduced }) {
   const start = (index / Math.max(total - 1, 1)) * 0.45
@@ -32,6 +40,7 @@ function TunnelCard({ project, index, total, progress, pointer, stage, reduced }
 }
 
 export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
+  const [showMoreArtworks, setShowMoreArtworks] = useState(false)
   const containerRef = useRef(null)
   const stageRef = useRef(null)
   const reduced = useReducedMotion()
@@ -61,7 +70,8 @@ export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
   }
 
   return (
-    <section className={`projects${reduced ? ' projects--reduced' : ''}`} ref={containerRef} id="projetos" aria-labelledby="projects-title">
+    <section id="projetos" aria-labelledby="projects-title">
+      <div className={`projects${reduced ? ' projects--reduced' : ''}`} ref={containerRef}>
       <div className="projects__stage" ref={stageRef} onPointerMove={onPointerMove}
         onPointerLeave={() => { rawX.set(0); rawY.set(0) }}>
         <div className="projects__guides" aria-hidden="true" />
@@ -80,6 +90,86 @@ export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
           Role para explorar <span aria-hidden="true">↓</span>
         </motion.p>
       </div>
+      </div>
+      <article className="project-feature" aria-labelledby="milplacas-title">
+        <div className="project-feature__layout">
+          <div className="project-feature__image">
+            <img src="/imgProjetos/imgProjetos05.jpg" alt="Mockup do website institucional da Milplacas em um notebook" loading="lazy" />
+            <img className="project-feature__hover-image" src="/imgProjetos/imgProjetos05Hover.jpg" alt="" aria-hidden="true" loading="lazy" />
+          </div>
+          <div className="project-feature__content">
+            <h3 id="milplacas-title">Projeto destaque - Milplacas</h3>
+            <p>
+              Criamos um novo layout moderno e responsivo para a Milplacas, empresa de Marília
+              especializada na construção de fachadas e esquadrias, com 26 anos de atuação no
+              mercado. O website valoriza a trajetória da empresa e apresenta suas soluções com
+              uma identidade visual renovada e uma navegação clara e intuitiva. O projeto já
+              está no ar.
+            </p>
+            <h4>Tecnologias utilizadas</h4>
+            <ul className="project-feature__tags">
+              {['React', 'JavaScript', 'CSS', 'Vite'].map((technology) => (
+                <li key={technology}>{technology}</li>
+              ))}
+            </ul>
+            <a className="project-feature__link" href="https://www.milplacas.com.br/" target="_blank" rel="noopener noreferrer">
+              Conferir <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+      <div className="projects-gallery" aria-label="Galeria de projetos">
+        <h3 className="projects-videos__title">Criativos<span>.</span></h3>
+        <ChromaGrid
+          items={projects.filter((project) => project.id !== 'projeto-05').map((project) => ({
+            image: project.src,
+            title: project.title,
+            accent: '#EC368D',
+          }))}
+          columns={2}
+          minCardWidth={260}
+          gap={24}
+          radius={300}
+          theme="light"
+          aspectRatio="16 / 10"
+          cardRadius={24}
+          showInfo={false}
+        />
+        <div id="extra-artworks" className="projects-gallery__extra" hidden={!showMoreArtworks}>
+          {showMoreArtworks && (
+            <ChromaGrid items={EXTRA_ARTWORKS} columns={2} minCardWidth={260} gap={24}
+              radius={300} theme="light" aspectRatio="16 / 10" cardRadius={24} showInfo={false} />
+          )}
+        </div>
+        <div className="projects-gallery__actions">
+          <button type="button" className="projects-gallery__toggle"
+            aria-expanded={showMoreArtworks} aria-controls="extra-artworks"
+            onClick={() => setShowMoreArtworks((current) => !current)}>
+            {showMoreArtworks ? 'Ver menos' : 'Ver mais'}
+            <span aria-hidden="true">{showMoreArtworks ? '−' : '+'}</span>
+          </button>
+        </div>
+      </div>
+      <section className="projects-gallery projects-videos" aria-labelledby="videos-title">
+        <h3 id="videos-title" className="projects-videos__title">Vídeos<span>.</span></h3>
+        <p className="projects-videos__description">
+          Projetos em vídeo criados com <strong>After Effects</strong> e <strong>CapCut</strong>,
+          utilizando <strong>inteligência artificial como ferramenta de apoio</strong> no processo criativo.
+        </p>
+        <ChromaGrid
+          items={[
+            { video: '/videos/videoMedalhas01.mp4', poster: '/videos/videoMedalhas01-capa.jpg', title: 'Vídeo de medalhas 01', accent: '#EC368D' },
+            { video: '/videos/videoMedalhas02.mp4', title: 'Vídeo de medalhas 02', accent: '#EC368D' },
+          ]}
+          columns={2}
+          minCardWidth={260}
+          gap={24}
+          theme="light"
+          aspectRatio="9 / 16"
+          cardRadius={24}
+          showInfo={false}
+        />
+      </section>
     </section>
   )
 }

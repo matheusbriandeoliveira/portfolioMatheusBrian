@@ -1,0 +1,99 @@
+.portfolio-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #e4efff;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.portfolio-footer__wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: visible;
+}
+
+.portfolio-footer__content {
+  max-width: 1512px;
+  margin: 0 auto;
+  padding: clamp(104px, 12vw, 176px) clamp(24px, 5vw, 96px) 32px;
+}
+
+.portfolio-footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 400ms ease, -webkit-text-stroke-color 400ms ease;
+}
+
+.portfolio-footer__name {
+  display: inline-block;
+  font-family: 'Drinks Fruit', 'Bodoni MT', Georgia, serif;
+  font-size: clamp(40px, 8vw, 112px);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  line-height: 1.1;
+}
+
+.portfolio-footer .portfolio-footer__name {
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+}
+
+.portfolio-footer__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin: 32px 0 48px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.portfolio-footer__navigation a,
+.portfolio-footer__bottom a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+}
+
+.portfolio-footer a:hover {
+  color: #271C40;
+}
+
+.portfolio-footer .portfolio-footer__name:hover {
+  color: transparent;
+  -webkit-text-stroke-color: #271C40;
+}
+
+.portfolio-footer a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 6px;
+}
+
+.portfolio-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid #ffffff55;
+  font-size: 13px;
+}
+
+.portfolio-footer__bottom small {
+  font-size: inherit;
+}
+
+@media (max-width: 767px) {
+  .portfolio-footer__content { text-align: center; }
+  .portfolio-footer__navigation { justify-content: center; margin-bottom: 32px; }
+  .portfolio-footer__bottom { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-footer a { transition: none; }
+}
