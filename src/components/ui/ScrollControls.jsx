@@ -20,11 +20,11 @@ export default function ScrollControls({ enabled }) {
       autoRaf: true,
       smoothWheel: true,
       syncTouch: true,
-      lerp: 0.055,
-      wheelMultiplier: 0.85,
-      syncTouchLerp: 0.05,
-      anchors: { duration: 1.6 },
-      prevent: (node) => Boolean(node.closest('[popover], video')),
+      lerp: 0.035,
+      wheelMultiplier: 0.75,
+      syncTouchLerp: 0.035,
+      anchors: { duration: 1.8 },
+      prevent: (node) => Boolean(node.closest('[popover]')),
     })
     lenisRef.current = lenis
     return () => {

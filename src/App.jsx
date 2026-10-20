@@ -91,10 +91,15 @@ function App() {
       })
 
       portfolioRef.current.querySelectorAll('.about__portraits, .about__text, .creative-tools__list, .project-feature__image, .project-feature__content, .projects-gallery > .chroma-grid, .contact__content').forEach((section) => {
-        const bounds = section.getBoundingClientRect()
-        const previousOffset = parseFloat(section.style.getPropertyValue('--section-offset')) || 0
-        const top = bounds.top - previousOffset
-        const bottom = bounds.bottom - previousOffset
+        // Use layout coordinates so the animated translation cannot feed back into its own target.
+        let documentTop = 0
+        let ancestor = section
+        while (ancestor) {
+          documentTop += ancestor.offsetTop
+          ancestor = ancestor.offsetParent
+        }
+        const top = documentTop - window.scrollY
+        const bottom = top + section.offsetHeight
         const entry = Math.max(0, Math.min(1, (viewportHeight - top) / (viewportHeight * 0.35)))
         const exit = Math.max(0, Math.min(1, bottom / (viewportHeight * 0.2)))
         section.setAttribute('data-scroll-section', '')

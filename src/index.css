@@ -18,6 +18,10 @@ html {
   scroll-padding-top: 24px;
 }
 
+html.lenis {
+  scroll-behavior: auto;
+}
+
 body {
   overflow-x: clip;
 }
