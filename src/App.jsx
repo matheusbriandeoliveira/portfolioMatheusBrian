@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import PerspectiveTunnelHero from './components/ui/perspective-tunnel-hero'
 
 function App() {
   const heroRef = useRef(null)
@@ -142,37 +143,33 @@ function App() {
       </div>
       </section>
       <section className="about" id="sobre" aria-labelledby="about-title">
-        <h2 className="about__title" id="about-title">Quem <span>sou eu</span>?</h2>
-        <div className="about__content">
-          <aside className="about__identity" aria-label="Perfil profissional">
-            <div>
-              <h3>Matheus Brian<span>.</span></h3>
+        <div className="about__layout">
+          <div className="about__portraits" aria-label="Retratos de Matheus Brian">
+            <img className="about__portrait about__portrait--back" src="/retrato01.png" alt="Retrato de Matheus Brian" width="450" height="675" loading="lazy" />
+            <img className="about__portrait about__portrait--front" src="/retrato02.png" alt="Segundo retrato de Matheus Brian" width="385" height="578" loading="lazy" />
+          </div>
+          <div className="about__text">
+            <header className="about__header">
+              <h2 className="about__title" id="about-title"><span className="about__title-intro">Um pouco mais</span><span>sobre mim.</span></h2>
+              <p className="about__subtitle">
+                Conheça um pouco da minha história, minhas habilidades e o que me inspira a criar experiências digitais.
+              </p>
+            </header>
+            <div className="about__bio">
+              <p>
+                Olá! Sou <strong>Matheus Brian de Oliveira</strong>, tenho 22 anos e moro em Marília, no interior de São Paulo. Sou <strong>desenvolvedor web</strong>, formado em <strong>Análise e Desenvolvimento de Sistemas</strong>, e apaixonado por <strong>tecnologia, design e criatividade</strong>.
+              </p>
+              <p>
+                Trabalho com <strong>desenvolvimento web, criação de interfaces e prototipação no Figma</strong>. Também utilizo ferramentas como <strong>Photoshop, Illustrator e inteligência artificial</strong> para transformar ideias em experiências digitais que unem <strong>estética e funcionalidade</strong>.
+              </p>
+              <p>
+                Sou uma pessoa curiosa, gosto de <strong>aprender, explorar novas possibilidades</strong> e acompanhar a evolução da tecnologia. Estou sempre buscando <strong>aprimorar minhas habilidades</strong> e desenvolver <strong>projetos cada vez mais criativos</strong>.
+              </p>
             </div>
-          </aside>
-          <div className="about__bio">
-          <p>
-            Olá! Sou <strong>Matheus Brian de Oliveira</strong>, tenho 22 anos e moro em Marília,
-            no interior de São Paulo. Sou <strong>desenvolvedor web</strong>, com formação em Análise e
-            Desenvolvimento de Sistemas, e sempre fui apaixonado por <strong>tecnologia, design e criatividade</strong>.
-          </p>
-          <p>
-            Gosto de <strong>transformar ideias em experiências digitais</strong> que unem estética, funcionalidade
-            e uma boa experiência para o usuário. Trabalho com desenvolvimento web, criação de
-            interfaces e <strong>prototipação no Figma</strong>, além de explorar ferramentas como Photoshop,
-            Illustrator e <strong>inteligência artificial</strong> para dar vida a novas ideias.
-          </p>
-          <p>
-            Sou uma pessoa curiosa, que gosta de <strong>aprender, experimentar novas possibilidades</strong> e
-            acompanhar a evolução da tecnologia. Estou sempre buscando aprimorar minhas habilidades
-            e encontrar maneiras diferentes de resolver problemas.
-          </p>
-          <p>
-            Para mim, cada projeto é uma oportunidade de aprender algo novo, explorar a criatividade
-            e criar <strong>experiências que vão além do visual</strong>.
-          </p>
           </div>
         </div>
       </section>
+      <PerspectiveTunnelHero />
     </main>
   )
 }
