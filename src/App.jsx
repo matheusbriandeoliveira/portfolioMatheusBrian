@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import PerspectiveTunnelHero from './components/ui/perspective-tunnel-hero'
 import PortfolioFooter from './components/ui/PortfolioFooter'
+import ScrollControls from './components/ui/ScrollControls'
 
 function App() {
   const heroRef = useRef(null)
@@ -89,11 +90,15 @@ function App() {
         text.setAttribute('data-scroll-text', '')
       })
 
-      portfolioRef.current.querySelectorAll('.about__portraits, .creative-tools__list, .project-feature__image, .projects-gallery > .chroma-grid').forEach((section) => {
+      portfolioRef.current.querySelectorAll('.about__portraits, .about__text, .creative-tools__list, .project-feature__image, .project-feature__content, .projects-gallery > .chroma-grid, .contact__content').forEach((section) => {
         const bounds = section.getBoundingClientRect()
-        const entry = Math.max(0, Math.min(1, (viewportHeight - bounds.top) / (viewportHeight * 0.25)))
+        const previousOffset = parseFloat(section.style.getPropertyValue('--section-offset')) || 0
+        const top = bounds.top - previousOffset
+        const bottom = bounds.bottom - previousOffset
+        const entry = Math.max(0, Math.min(1, (viewportHeight - top) / (viewportHeight * 0.35)))
+        const exit = Math.max(0, Math.min(1, bottom / (viewportHeight * 0.2)))
         section.setAttribute('data-scroll-section', '')
-        section.style.setProperty('--section-offset', motionPreference.matches ? '0px' : `${(1 - entry) * 28}px`)
+        section.style.setProperty('--section-offset', motionPreference.matches ? '0px' : `${(1 - entry) * 40 - (1 - exit) * 20}px`)
       })
     }
 
@@ -231,6 +236,7 @@ function App() {
         </div>
       </section>
       <PortfolioFooter />
+      <ScrollControls enabled={preloader === 'hidden'} />
     </main>
   )
 }

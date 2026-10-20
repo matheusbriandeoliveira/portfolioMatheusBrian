@@ -542,7 +542,7 @@
 
 [data-scroll-section] {
   translate: 0 var(--section-offset, 0px);
-  transition: translate 650ms cubic-bezier(0.22, 1, 0.36, 1), transform 400ms ease;
+  transition: translate 900ms cubic-bezier(0.22, 1, 0.36, 1), transform 400ms ease;
 }
 
 .hero__navigation {
@@ -723,7 +723,6 @@
   }
 
   .hero__profile {
-    display: none;
     position: relative;
     inset: auto;
     width: 100%;
