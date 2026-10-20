@@ -10,6 +10,7 @@
   position: relative;
   isolation: isolate;
   display: grid;
+  aspect-ratio: 1;
   min-height: 100vh;
   min-height: 100svh;
   overflow: hidden;
@@ -18,8 +19,8 @@
     url('/bg.png'),
     linear-gradient(180deg, #3568f5 0%, #f68ee6 100%);
   background-repeat: no-repeat;
-  background-position: center center, center;
-  background-size: cover, 100% 100%;
+  background-position: center top, center;
+  background-size: 100% auto, 100% 100%;
   color: #ffe0ed;
 }
 
@@ -41,15 +42,19 @@
 }
 
 .hero__intro {
-  align-self: center;
+  position: absolute;
+  top: 50vh;
+  top: 50svh;
+  transform: translateY(-50%);
   justify-self: center;
   width: min(100% - 48px, 1320px);
-  margin-top: clamp(28px, 6vh, 72px);
+  margin-top: 0;
   text-align: center;
 }
 
 .hero__greeting {
-  margin: 0 0 clamp(4px, 1.5vh, 16px);
+  margin: 0;
+  transform: translateY(clamp(6px, 1vw, 16px));
   color: rgb(255 224 237 / 80%);
   font-family: 'DM Sans', sans-serif;
   font-size: clamp(20px, 2.3vw, 32px);
@@ -61,9 +66,9 @@
   margin: 0;
   color: #ffe0ed;
   font-family: 'Drinks Fruit', 'Bodoni MT', Georgia, serif;
-  font-size: clamp(64px, 12.2vw, 176px);
+  font-size: clamp(48px, 10.5vw, 160px);
   font-weight: 400;
-  letter-spacing: -0.055em;
+  letter-spacing: 0.025em;
   line-height: 0.95;
   white-space: nowrap;
 }
@@ -80,10 +85,6 @@
 }
 
 @media (max-width: 600px) {
-  .hero {
-    background-position: center center, center;
-  }
-
   .hero__navigation {
     top: 24px;
     right: 24px;
@@ -96,12 +97,14 @@
 
   .hero__intro {
     width: calc(100% - 32px);
-    margin-top: 32px;
+  }
+
+  .hero__greeting {
+    font-size: 16px;
   }
 
   .hero__name {
-    font-size: clamp(48px, 12.5vw, 76px);
-    letter-spacing: -0.06em;
+    font-size: clamp(32px, 10vw, 60px);
   }
 
   .hero__tagline {
