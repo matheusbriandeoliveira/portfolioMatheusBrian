@@ -723,6 +723,7 @@
   }
 
   .hero__profile {
+    display: none;
     position: relative;
     inset: auto;
     width: 100%;
