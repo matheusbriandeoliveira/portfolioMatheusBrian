@@ -695,8 +695,6 @@
 }
 
 @media (max-width: 767px) {
-  .about__text,
-  .about__title,
   .creative-tools__inner > h2,
   .creative-tools__inner > p {
     text-align: center;
@@ -786,15 +784,80 @@
   }
 
   .about__title {
-    font-size: clamp(28px, 6.4vw, 48px);
-    text-align: center;
+    font-size: clamp(42px, 10vw, 60px);
+    text-align: left;
+    line-height: 1.05;
   }
 
   .about__title .about__title-intro {
-    display: inline;
-    margin-bottom: 0;
-    margin-right: 0.2em;
-    font-size: 0.65em;
+    display: block;
+    margin: 0 0 -4px;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .about {
+    min-height: 0;
+    padding: 48px 24px 56px;
+  }
+
+  .about__layout {
+    max-width: 480px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .about__portraits {
+    width: 100%;
+    max-width: 360px;
+    height: clamp(260px, 78vw, 340px);
+    aspect-ratio: auto;
+  }
+
+  .about__portrait {
+    width: auto;
+    aspect-ratio: 2 / 3;
+    border-radius: 18px;
+    object-fit: cover;
+  }
+
+  .about__portrait--back {
+    top: 0;
+    bottom: auto;
+    left: 5%;
+    height: 90%;
+  }
+
+  .about__portrait--front {
+    right: 5%;
+    bottom: 0;
+    height: 72%;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 24px #271c401a;
+  }
+
+  .about__text {
+    width: 100%;
+    text-align: left;
+  }
+
+  .about__subtitle {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.65;
+    text-align: left;
+  }
+
+  .about__bio {
+    margin-top: 24px;
+    padding-top: 24px;
+    font-size: 15px;
+    line-height: 1.9;
+    text-align: left;
+  }
+
+  .about__bio p + p {
+    margin-top: 20px;
   }
 
   .creative-tools__popover {
