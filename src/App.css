@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'Drinks Fruit';
+  src: url('./assets/fonts/drinks-fruit.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background-color: #f68ee6;
+  background-image:
+    url('/bg.png'),
+    linear-gradient(180deg, #3568f5 0%, #f68ee6 100%);
+  background-repeat: no-repeat;
+  background-position: center center, center;
+  background-size: cover, 100% 100%;
+  color: #ffe0ed;
+}
+
+.hero__navigation {
+  position: absolute;
+  z-index: 1;
+  top: clamp(24px, 4.2vh, 44px);
+  right: clamp(24px, 5.5vw, 84px);
+  display: flex;
+  gap: clamp(24px, 3vw, 44px);
+}
+
+.hero__navigation a {
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.hero__intro {
+  align-self: center;
+  justify-self: center;
+  width: min(100% - 48px, 1320px);
+  margin-top: clamp(28px, 6vh, 72px);
+  text-align: center;
+}
+
+.hero__greeting {
+  margin: 0 0 clamp(4px, 1.5vh, 16px);
+  color: rgb(255 224 237 / 80%);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(20px, 2.3vw, 32px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.hero__name {
+  margin: 0;
+  color: #ffe0ed;
+  font-family: 'Drinks Fruit', 'Bodoni MT', Georgia, serif;
+  font-size: clamp(64px, 12.2vw, 176px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  white-space: nowrap;
+}
+
+.hero__tagline {
+  width: fit-content;
+  margin: clamp(12px, 2.1vh, 24px) 2.5% 0 auto;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(16px, 1.55vw, 22px);
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    background-position: center center, center;
+  }
+
+  .hero__navigation {
+    top: 24px;
+    right: 24px;
+    gap: 22px;
+  }
+
+  .hero__navigation a {
+    font-size: 14px;
+  }
+
+  .hero__intro {
+    width: calc(100% - 32px);
+    margin-top: 32px;
+  }
+
+  .hero__name {
+    font-size: clamp(48px, 12.5vw, 76px);
+    letter-spacing: -0.06em;
+  }
+
+  .hero__tagline {
+    margin-right: 2%;
+    font-size: 15px;
+  }
+}
