@@ -6,16 +6,16 @@ import './perspective-tunnel-hero.css'
 import ChromaGrid from './ChromaGrid'
 
 const PROJECTS = [
-  { id: 'projeto-01', title: 'Projeto 01', src: '/imgProjetos/imgProjeto01.jpg' },
-  { id: 'projeto-02', title: 'Projeto 02', src: '/imgProjetos/imgProjeto02.jpg' },
-  { id: 'projeto-03', title: 'Projeto 03', src: '/imgProjetos/imgProjetos03.jpg' },
-  { id: 'projeto-04', title: 'Projeto 04', src: '/imgProjetos/imgProjetos04.jpg' },
-  { id: 'projeto-05', title: 'Projeto 05', src: '/imgProjetos/imgProjetos05.jpg' },
+  { id: 'projeto-01', title: 'Projeto 01', src: '/assets/images/projects/project-01.jpg' },
+  { id: 'projeto-02', title: 'Projeto 02', src: '/assets/images/projects/project-02.jpg' },
+  { id: 'projeto-03', title: 'Projeto 03', src: '/assets/images/projects/project-03.jpg' },
+  { id: 'projeto-04', title: 'Projeto 04', src: '/assets/images/projects/project-04.jpg' },
+  { id: 'projeto-05', title: 'Projeto 05', src: '/assets/images/projects/project-05.jpg' },
 ]
 
 const EXTRA_ARTWORKS = ['jpg', 'png'].flatMap((extension) =>
   [1, 2, 3].map((number) => ({
-    image: `/img/criativosExtras (${number}).${extension}`,
+    image: `/assets/images/artwork/artwork-0${number}.${extension}`,
     title: `Arte ${number} (${extension})`,
     accent: '#EC368D',
   })))
@@ -94,8 +94,8 @@ export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
       <article className="project-feature" aria-labelledby="milplacas-title">
         <div className="project-feature__layout">
           <div className="project-feature__image">
-            <img src="/imgProjetos/imgProjetos05.jpg" alt="Mockup do website institucional da Milplacas em um notebook" loading="lazy" />
-            <img className="project-feature__hover-image" src="/imgProjetos/imgProjetos05Hover.jpg" alt="" aria-hidden="true" loading="lazy" />
+            <img src="/assets/images/projects/project-05.jpg" alt="Mockup do website institucional da Milplacas em um notebook" loading="lazy" decoding="async" />
+            <img className="project-feature__hover-image" src="/assets/images/projects/project-05-hover.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </div>
           <div className="project-feature__content">
             <h3 id="milplacas-title">Projeto destaque - Milplacas</h3>
@@ -158,8 +158,8 @@ export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
         </p>
         <ChromaGrid
           items={[
-            { video: '/videos/videoMedalhas01.mp4', poster: '/videos/videoMedalhas01-capa.jpg', title: 'Vídeo de medalhas 01', accent: '#EC368D' },
-            { video: '/videos/videoMedalhas02.mp4', title: 'Vídeo de medalhas 02', accent: '#EC368D' },
+            { video: '/assets/videos/medalhas-01.mp4', poster: '/assets/videos/medalhas-01-poster.jpg', title: 'Vídeo de medalhas 01', accent: '#EC368D' },
+            { video: '/assets/videos/medalhas-02.mp4', title: 'Vídeo de medalhas 02', accent: '#EC368D' },
           ]}
           columns={2}
           minCardWidth={260}

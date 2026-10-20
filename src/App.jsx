@@ -24,7 +24,7 @@ function App() {
     const backgroundReady = new Promise((resolve) => {
       background.onload = resolve
       background.onerror = resolve
-      background.src = '/bg.png'
+      background.src = '/assets/images/backgrounds/background.png'
     })
     const assetsReady = Promise.all([
       backgroundReady,
@@ -161,18 +161,20 @@ function App() {
         </p>
         <img
           className="hero__portrait"
-          src="/frontEu.png"
+          src="/assets/images/profile/front.png"
           alt="Matheus Brian"
           width="1254"
           height="1254"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
       </section>
       <section className="about" id="sobre" aria-labelledby="about-title">
         <div className="about__layout">
           <div className="about__portraits" aria-label="Retratos de Matheus Brian">
-            <img className="about__portrait about__portrait--back" src="/retrato01.png" alt="Retrato de Matheus Brian" width="450" height="675" loading="lazy" />
-            <img className="about__portrait about__portrait--front" src="/retrato02.png" alt="Segundo retrato de Matheus Brian" width="385" height="578" loading="lazy" />
+            <img className="about__portrait about__portrait--back" src="/assets/images/profile/portrait-01.png" alt="Retrato de Matheus Brian" width="450" height="675" loading="lazy" decoding="async" />
+            <img className="about__portrait about__portrait--front" src="/assets/images/profile/portrait-02.png" alt="Segundo retrato de Matheus Brian" width="385" height="578" loading="lazy" decoding="async" />
           </div>
           <div className="about__text">
             <header className="about__header">
@@ -201,12 +203,12 @@ function App() {
           <p>As tecnologias e ferramentas que utilizo para transformar ideias em projetos reais.</p>
           <ul className="creative-tools__list">
             {[
-              { name: 'React', icon: '/reactLogo.svg', description: 'Utilizo o React para desenvolver websites e interfaces interativas, criando componentes reutilizáveis e experiências responsivas.' },
-              { name: 'Figma', icon: '/figmaLogo.svg', description: 'Utilizo o Figma para planejar interfaces, criar layouts e protótipos e explorar a experiência de navegação antes do desenvolvimento.' },
-              { name: 'Photoshop', icon: '/psLogo.svg', description: 'Utilizo o Photoshop para editar e tratar imagens, criar composições visuais e preparar artes para projetos digitais.' },
-              { name: 'Illustrator', icon: '/illustratorLogo.svg', description: 'Utilizo o Illustrator para criar ilustrações vetoriais, elementos gráficos e peças de identidade visual que mantêm a qualidade em diferentes tamanhos.' },
-              { name: 'After Effects', icon: '/afterLogo.svg', description: 'Utilizo o After Effects para dar movimento às ideias, criando animações, efeitos visuais e composições para vídeos.' },
-              { name: 'CorelDRAW', icon: '/corelLogo.svg', description: 'Utilizo o CorelDRAW para desenvolver artes vetoriais, diagramar peças gráficas e preparar arquivos para impressão.' },
+              { name: 'React', icon: '/assets/images/tools/react.svg', description: 'Utilizo o React para desenvolver websites e interfaces interativas, criando componentes reutilizáveis e experiências responsivas.' },
+              { name: 'Figma', icon: '/assets/images/tools/figma.svg', description: 'Utilizo o Figma para planejar interfaces, criar layouts e protótipos e explorar a experiência de navegação antes do desenvolvimento.' },
+              { name: 'Photoshop', icon: '/assets/images/tools/photoshop.svg', description: 'Utilizo o Photoshop para editar e tratar imagens, criar composições visuais e preparar artes para projetos digitais.' },
+              { name: 'Illustrator', icon: '/assets/images/tools/illustrator.svg', description: 'Utilizo o Illustrator para criar ilustrações vetoriais, elementos gráficos e peças de identidade visual que mantêm a qualidade em diferentes tamanhos.' },
+              { name: 'After Effects', icon: '/assets/images/tools/after-effects.svg', description: 'Utilizo o After Effects para dar movimento às ideias, criando animações, efeitos visuais e composições para vídeos.' },
+              { name: 'CorelDRAW', icon: '/assets/images/tools/coreldraw.svg', description: 'Utilizo o CorelDRAW para desenvolver artes vetoriais, diagramar peças gráficas e preparar arquivos para impressão.' },
             ].map((tool, index) => (
               <li key={tool.name}>
                 <button type="button" className="creative-tools__item" popoverTarget={`tool-${index}`} aria-label={`Como utilizo ${tool.name}`}>

@@ -244,7 +244,7 @@ export const ChromaGrid = ({
               <span className="chroma-wash" aria-hidden="true" />
               <div className="chroma-media" data-chroma-area="">
                 {item.video ? (
-                  <video className="chroma-video" src={item.video} controls playsInline preload="metadata"
+                  <video className="chroma-video" src={item.video} controls playsInline preload="none"
                     aria-label={item.title} poster={item.poster} />
                 ) : (
                   <>
@@ -289,5 +289,4 @@ export const ChromaGrid = ({
 };
 
 export default ChromaGrid;
-
 

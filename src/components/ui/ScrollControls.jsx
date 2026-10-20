@@ -1,11 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
-import Lenis from 'lenis'
-import 'lenis/dist/lenis.css'
 import './ScrollControls.css'
 
 export default function ScrollControls({ enabled }) {
-  const lenisRef = useRef(null)
   const reduced = useReducedMotion()
   const [visible, setVisible] = useState(false)
   const { scrollY, scrollYProgress } = useScroll()
@@ -14,31 +11,8 @@ export default function ScrollControls({ enabled }) {
     setVisible(position > 300)
   })
 
-  useEffect(() => {
-    if (!enabled || reduced) return
-    const lenis = new Lenis({
-      autoRaf: true,
-      smoothWheel: true,
-      syncTouch: true,
-      lerp: 0.035,
-      wheelMultiplier: 0.75,
-      syncTouchLerp: 0.035,
-      anchors: { duration: 1.8 },
-      prevent: (node) => Boolean(node.closest('[popover]')),
-    })
-    lenisRef.current = lenis
-    return () => {
-      lenis.destroy()
-      lenisRef.current = null
-    }
-  }, [enabled, reduced])
-
   const goToTop = () => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { duration: 1.4 })
-    } else {
-      window.scrollTo({ top: 0, behavior: reduced ? 'instant' : 'smooth' })
-    }
+    window.scrollTo({ top: 0, behavior: reduced ? 'instant' : 'smooth' })
   }
 
   return (

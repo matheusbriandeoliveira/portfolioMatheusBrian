@@ -524,7 +524,7 @@
   z-index: -1;
   pointer-events: none;
   background-image:
-    url('/bg.png'),
+    url('/assets/images/backgrounds/background.png'),
     linear-gradient(180deg, #3568f5 0%, #f68ee6 100%);
   background-repeat: no-repeat;
   background-position: center top, center;

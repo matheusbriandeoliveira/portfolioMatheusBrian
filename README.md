@@ -1,16 +1,26 @@
-# React + Vite
+# Portfólio Matheus Brian
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfólio pessoal construído com React e Vite.
 
-Currently, two official plugins are available:
+## Desenvolvimento
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+npm install
+npm run dev
+```
 
-## React Compiler
+Para validar e gerar a versão de produção:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm run lint
+npm run build
+```
 
-## Expanding the ESLint configuration
+## Organização dos arquivos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/`: aplicação React, componentes, estilos e fontes.
+- `public/assets/images/`: imagens publicadas, separadas em `artwork`, `backgrounds`, `profile`, `projects` e `tools`.
+- `public/assets/videos/`: vídeos e capas exibidos na galeria.
+- `media-source/`: arquivos originais/arquivados que não precisam ser publicados com o site.
+
+Os arquivos em `public/` são copiados diretamente para a versão de produção. Mantenha materiais não usados pelo site em `media-source/` para evitar servi-los aos visitantes.
