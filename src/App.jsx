@@ -130,6 +130,7 @@ function App() {
 
   return (
     <main className="portfolio" ref={portfolioRef}>
+      <a className="skip-link" href="#sobre">Pular para o conteúdo principal</a>
       {preloader !== 'hidden' && (
         <div className={`preloader preloader--${preloader}`} role="status" aria-label="Carregando portfólio">
           <p className="preloader__name">Matheus Brian<span>.</span></p>
@@ -211,11 +212,16 @@ function App() {
               { name: 'CorelDRAW', icon: '/assets/images/tools/coreldraw.svg', description: 'Utilizo o CorelDRAW para desenvolver artes vetoriais, diagramar peças gráficas e preparar arquivos para impressão.' },
             ].map((tool, index) => (
               <li key={tool.name}>
-                <button type="button" className="creative-tools__item" popoverTarget={`tool-${index}`} aria-label={`Como utilizo ${tool.name}`}>
+                <button type="button" className="creative-tools__item" popoverTarget={`tool-${index}`}
+                  aria-label={`Como utilizo ${tool.name}`} aria-haspopup="dialog" aria-controls={`tool-${index}`}>
                   <img src={tool.icon} alt="" width="64" height="64" loading="lazy" />
                   <span>{tool.name}</span>
                 </button>
-                <div className="creative-tools__popover" id={`tool-${index}`} popover="auto" role="dialog" aria-labelledby={`tool-title-${index}`}>
+                <div className="creative-tools__popover" id={`tool-${index}`} popover="auto" role="dialog"
+                  aria-labelledby={`tool-title-${index}`}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') event.currentTarget.hidePopover()
+                  }}>
                   <button type="button" className="creative-tools__close" popoverTarget={`tool-${index}`} popoverTargetAction="hide" aria-label="Fechar">×</button>
                   <img src={tool.icon} alt="" width="64" height="64" />
                   <h3 id={`tool-title-${index}`}>{tool.name}</h3>

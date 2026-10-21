@@ -38,6 +38,11 @@ export default function PortfolioFooter() {
           <a href="#projetos">Projetos</a>
           <a href="#contato">Contato</a>
         </nav>
+        <nav className="portfolio-footer__legal" aria-label="Informações legais">
+          <a href="/privacidade.html">Política de Privacidade</a>
+          <a href="/termos.html">Termos de Uso</a>
+          <a href="/cookies.html">Política de Cookies</a>
+        </nav>
         <div className="portfolio-footer__bottom">
           <small>© {new Date().getFullYear()} Matheus Brian de Oliveira.</small>
           <a href="#inicio">Voltar ao topo <span aria-hidden="true">↑</span></a>

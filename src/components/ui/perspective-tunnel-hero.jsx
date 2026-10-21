@@ -6,17 +6,22 @@ import './perspective-tunnel-hero.css'
 import ChromaGrid from './ChromaGrid'
 
 const PROJECTS = [
-  { id: 'projeto-01', title: 'Projeto 01', src: '/assets/images/projects/project-01.jpg' },
-  { id: 'projeto-02', title: 'Projeto 02', src: '/assets/images/projects/project-02.jpg' },
-  { id: 'projeto-03', title: 'Projeto 03', src: '/assets/images/projects/project-03.jpg' },
-  { id: 'projeto-04', title: 'Projeto 04', src: '/assets/images/projects/project-04.jpg' },
-  { id: 'projeto-05', title: 'Projeto 05', src: '/assets/images/projects/project-05.jpg' },
+  { id: 'projeto-01', title: 'Projeto 01', alt: 'Mockup de website para construtora em notebook e celular', src: '/assets/images/projects/project-01.jpg' },
+  { id: 'projeto-02', title: 'Projeto 02', alt: 'Apresentação da identidade visual Venovra em um monitor, em uma sala escura', src: '/assets/images/projects/project-02.jpg' },
+  { id: 'projeto-03', title: 'Projeto 03', alt: 'Peças digitais da Jacto exibidas em um smartphone', src: '/assets/images/projects/project-03.jpg' },
+  { id: 'projeto-04', title: 'Projeto 04', alt: 'Arte promocional da Milplacas com fachada comercial exibida em um tablet', src: '/assets/images/projects/project-04.jpg' },
+  { id: 'projeto-05', title: 'Projeto 05', alt: 'Apresentação de website institucional em diferentes telas', src: '/assets/images/projects/project-05.jpg' },
 ]
 
 const EXTRA_ARTWORKS = ['jpg', 'png'].flatMap((extension) =>
   [1, 2, 3].map((number) => ({
     image: `/assets/images/artwork/artwork-0${number}.${extension}`,
     title: `Arte ${number} (${extension})`,
+    alt: [
+      'Composição de campanha digital da Milplacas apresentada em um smartphone',
+      'Arte da Milplacas com fachada comercial apresentada em um tablet',
+      'Mockup de website da Milplacas exibido em um notebook',
+    ][number - 1],
     accent: '#EC368D',
   })))
 
@@ -34,7 +39,7 @@ function TunnelCard({ project, index, total, progress, pointer, stage, reduced }
 
   return (
     <motion.figure className="projects__card" style={reduced ? undefined : { transform, opacity }}>
-      <img src={project.src} alt={project.title} loading="lazy" draggable="false" />
+      <img src={project.src} alt={project.alt} loading="lazy" draggable="false" />
     </motion.figure>
   )
 }
@@ -100,11 +105,10 @@ export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
           <div className="project-feature__content">
             <h3 id="milplacas-title">Projeto destaque - Milplacas</h3>
             <p>
-              Criamos um novo layout moderno e responsivo para a Milplacas, empresa de Marília
-              especializada na construção de fachadas e esquadrias, com 26 anos de atuação no
-              mercado. O website valoriza a trajetória da empresa e apresenta suas soluções com
-              uma identidade visual renovada e uma navegação clara e intuitiva. O projeto já
-              está no ar.
+              Este projeto apresenta o website institucional responsivo da Milplacas, empresa de
+              Marília especializada na construção de fachadas e esquadrias, com 26 anos de atuação
+              no mercado. O site apresenta a trajetória e as soluções da empresa em uma identidade
+              visual renovada e está no ar.
             </p>
             <h4>Tecnologias utilizadas</h4>
             <ul className="project-feature__tags">
@@ -112,8 +116,8 @@ export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
                 <li key={technology}>{technology}</li>
               ))}
             </ul>
-            <a className="project-feature__link" href="https://www.milplacas.com.br/" target="_blank" rel="noopener noreferrer">
-              Conferir <span aria-hidden="true">↗</span>
+            <a className="project-feature__link" href="https://www.milplacas.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Visitar o website da Milplacas (abre em nova aba)">
+              Visitar o website da Milplacas <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
@@ -124,6 +128,7 @@ export default function PerspectiveTunnelHero({ projects = PROJECTS }) {
           items={projects.filter((project) => project.id !== 'projeto-05').map((project) => ({
             image: project.src,
             title: project.title,
+            alt: project.alt,
             accent: '#EC368D',
           }))}
           columns={2}

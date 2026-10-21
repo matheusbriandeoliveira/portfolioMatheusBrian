@@ -51,7 +51,16 @@
   font-weight: 700;
 }
 
+.portfolio-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: -28px 0 40px;
+  font-size: 14px;
+}
+
 .portfolio-footer__navigation a,
+.portfolio-footer__legal a,
 .portfolio-footer__bottom a {
   display: inline-flex;
   align-items: center;
@@ -91,6 +100,7 @@
 @media (max-width: 767px) {
   .portfolio-footer__content { text-align: center; }
   .portfolio-footer__navigation { justify-content: center; margin-bottom: 32px; }
+  .portfolio-footer__legal { justify-content: center; margin: -12px 0 32px; }
   .portfolio-footer__bottom { flex-direction: column; }
 }
 
